@@ -6,8 +6,26 @@ export async function seed(knex: Knex): Promise<void> {
 
   // Inserts seed entries
   await knex("cars").insert([
-    { id: 1, name: "Subaru" },
-    { id: 2, name: "Supra" },
-    { id: 3, name: "McLaren" },
+    {
+      name: "Subaru",
+      price: 1000,
+      photoUrl: "Photo URL",
+      startRent: new Date(),
+      finishRent: new Date(),
+    },
+    {
+      name: "McLaren",
+      price: 2000,
+      photoUrl: "Photo URL",
+      startRent: new Date(),
+      finishRent: new Date(),
+    },
+    {
+      name: "Supra",
+      price: 3000,
+      photoUrl: "Photo URL",
+      startRent: new Date(),
+      finishRent: new Date(),
+    },
   ]);
 }

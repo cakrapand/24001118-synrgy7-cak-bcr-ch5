@@ -3,7 +3,12 @@ import type { Knex } from "knex";
 export async function up(knex: Knex): Promise<void> {
   return knex.schema.createTable("cars", (table: Knex.TableBuilder) => {
     table.increments("id").primary;
-    table.string("name", 255).notNullable;
+    table.string("name").notNullable;
+    table.integer("price").notNullable;
+    table.string("photoUrl").notNullable;
+    table.datetime("startRent").notNullable;
+    table.datetime("finishRent").notNullable;
+    table.timestamps({ defaultToNow: true, useCamelCase: true });
   });
 }
 
