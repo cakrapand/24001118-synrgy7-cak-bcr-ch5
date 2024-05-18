@@ -52,7 +52,8 @@ carsRouter.put(
     try {
       const { id } = req.params;
       const { name, price, startRent, finishRent, photoUrl } = req.body;
-      if (!name || !price || !startRent || !finishRent)
+
+      if (!name && !price && !startRent && !finishRent)
         return res.status(400).json({ message: "Invalid Input" });
 
       await getCar(+id);
