@@ -11,7 +11,7 @@ carsRouter.post("/", async (req: Request, res: Response) => {
 
     const cars = await createCar({ name, price, startRent, finishRent });
 
-    return res.status(201).json({ message: "CREATED", cars });
+    return res.status(201).json({ message: "CREATED", data: cars });
   } catch (error: any) {
     return res.status(500).json({ message: error.message });
   }
@@ -20,7 +20,7 @@ carsRouter.post("/", async (req: Request, res: Response) => {
 carsRouter.get("/", async (req: Request, res: Response) => {
   try {
     const cars = await getCars();
-    return res.status(200).json({ message: "OK", cars });
+    return res.status(200).json({ message: "OK", data: cars });
   } catch (error: any) {
     return res.status(500).json({ message: error.message });
   }
@@ -30,7 +30,7 @@ carsRouter.get("/:id", async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const cars = await getCar(+id);
-    return res.status(200).json({ message: "OK", cars });
+    return res.status(200).json({ message: "OK", data: cars });
   } catch (error: any) {
     return res.status(500).json({ message: error.message });
   }
