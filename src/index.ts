@@ -18,7 +18,7 @@ const knexInstance = knex({
 Model.knex(knexInstance);
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
 app.use("/api", routes);
 
 app.listen(port, () => {
