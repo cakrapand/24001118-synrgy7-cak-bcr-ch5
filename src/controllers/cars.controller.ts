@@ -9,9 +9,9 @@ carsRouter.post("/", async (req: Request, res: Response) => {
     if (!name || !price || !startRent || !finishRent)
       return res.status(400).json({ message: "Invalid Input" });
 
-    const cars = await createCar({ name, price, startRent, finishRent });
+    await createCar({ name, price, startRent, finishRent });
 
-    return res.status(201).json({ message: "CREATED", data: cars });
+    return res.status(201).json({ message: "New car created" });
   } catch (error: any) {
     return res.status(500).json({ message: error.message });
   }
@@ -32,7 +32,7 @@ carsRouter.get("/:id", async (req: Request, res: Response) => {
     const cars = await getCar(+id);
     return res.status(200).json({ message: "OK", data: cars });
   } catch (error: any) {
-    return res.status(500).json({ message: error.message });
+    return res.status(error.statusCode ? error.statusCode : 500).json({ message: error.message });
   }
 });
 
@@ -43,11 +43,12 @@ carsRouter.put("/:id", async (req: Request, res: Response) => {
     if (!name || !price || !startRent || !finishRent)
       return res.status(400).json({ message: "Invalid Input" });
 
-    const cars = await updateCar(+id, { name, price, startRent, finishRent });
+    await getCar(+id);
+    await updateCar(+id, { name, price, startRent, finishRent });
 
     return res.status(200).json({ message: "Car updated" });
   } catch (error: any) {
-    return res.status(500).json(error.message);
+    return res.status(error.statusCode ? error.statusCode : 500).json({ message: error.message });
   }
 });
 
@@ -55,10 +56,11 @@ carsRouter.delete("/:id", async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const cars = await deleteCar(+id);
+    await getCar(+id);
+    await deleteCar(+id);
 
     return res.status(200).json({ message: "Car Deleted" });
   } catch (error: any) {
-    return res.status(500).json(error.message);
+    return res.status(error.statusCode ? error.statusCode : 500).json({ message: error.message });
   }
 });
