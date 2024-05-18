@@ -215,7 +215,7 @@ The REST API to the Binar Car Rental app is described below.
 { "message": "Car Deleted" }
 ```
 
-## Try to delete same Thing again
+## Try to delete same Car again
 
 ### Request
 
