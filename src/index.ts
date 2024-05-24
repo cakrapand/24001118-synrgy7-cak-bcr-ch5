@@ -1,7 +1,7 @@
 import express from "express";
 import knex from "knex";
 import { Model } from "objection";
-import { routes } from "./routes/api.route";
+import { router } from "./routes/api.route";
 
 const port = 3000;
 const app = express();
@@ -19,7 +19,7 @@ Model.knex(knexInstance);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/api", routes);
+app.use("/", router);
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);

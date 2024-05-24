@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { carsRouter } from "../controllers/cars.controller";
+import { carsRouter } from "./cars.route";
 
-export const routes = Router();
+export const router = Router();
 
-routes.use("/cars", carsRouter);
+router.use("/api", carsRouter);
